@@ -41,4 +41,10 @@ module "blog_sg" {
 
   security_group_id = aws_security_group.blog.id 
 }
+resource "aws_security_group" "blog" {
+  name        = "blog"
+  description = "allow http and https in. Allow everything out"
+  vpc_id = data.aws_vpc.default.id
+}
+
 
