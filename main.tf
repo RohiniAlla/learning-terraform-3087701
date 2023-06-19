@@ -47,6 +47,7 @@ resource "aws_s3_bucket" "blog" {
   tags = {
     Name        = "My bucket1"
     Environment = "Dev"
+  }
 }
 module "alb" {
   source  = "terraform-aws-modules/alb/aws"
