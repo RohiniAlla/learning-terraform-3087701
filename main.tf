@@ -15,15 +15,7 @@ data "aws_ami" "app_ami" {
 }
 module "blog_vpc" {
   source = "terraform-aws-modules/vpc/aws"
-
-  name = "dev"
-  cidr = "10.0.0.0/16"
-
-  azs             = ["us-west-2a", "us-west-2b", "us-west-2c"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
-
-  enable_nat_gateway = true
-  
+  create_vpc = false
 
   tags = {
     Terraform = "true"
@@ -43,7 +35,6 @@ resource "aws_instance" "blog" {
 
 resource "aws_s3_bucket" "blog" {
   bucket = "my-tf-test-bucket1"
-  acl    = "private"
   tags = {
     Name        = "My bucket1"
     Environment = "Dev"
