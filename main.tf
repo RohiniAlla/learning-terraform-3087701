@@ -40,6 +40,14 @@ resource "aws_instance" "blog" {
     Name = "terraform learning"
   }
 }
+
+resource "aws_s3_bucket" "blog" {
+  bucket = "my-tf-test-bucket1"
+  acl    = "private"
+  tags = {
+    Name        = "My bucket1"
+    Environment = "Dev"
+}
 module "alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 8.0"
